@@ -1,2 +1,2 @@
 const fs = require('fs');
-fs.writeFileSync('hello.txt', 'hello from nodejs1233');
+fs.writeFileSync('hello.txt', 'hello from nodejs1233'); 
