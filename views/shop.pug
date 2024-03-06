@@ -1,0 +1,116 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{docTitle}
+        style.
+            body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            }
+            main {
+            padding: 1rem;
+            }
+            .main-header {
+            width: 100%;
+            height: 3.5rem;
+            padding: 0 1.5rewm;
+            background-color: rgb(219, 196, 65);
+            }
+            .main-header__item-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            }
+            .main-header_item {
+            margin: 0 1rem;
+            padding: 0;
+            }
+            .main-header-nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            }
+            .main-header_item a {
+            text-decoration: none;
+            color: #000;
+            }
+            .main-header__item a:hover,
+            .main-header__item a:active,
+            .main-header__item a.active {
+            color: #6200ff;
+            }
+            .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            }
+            .card {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+            }
+            .card__header,
+            .card__content {
+            padding: 1rem;
+            }
+            .card__header h1,
+            .card__content h1,
+            .card__content h2,
+            .card__content p {
+            margin: 0;
+            }
+           .card__image {
+           width: 100%;
+           } 
+           .card__image img {
+           width: 100%;
+           }
+           .card__actions {
+           padding: 1rem;
+           text-align: center;
+           }
+           .card__actions button,
+           .card__actions a {
+           margin: 0 0.25rem;
+           }
+           .btn {
+           font: inherit;
+           border: 1px solid #00695c;
+           color: #00695c;
+           background: white;
+           border-radius: 3px;
+           cursor: pointer;
+           padding: 4px 8px;
+           }  
+           .btn:hover,
+           .btn:active {
+           background-color: #00695c;
+           color: white;
+           }
+           
+    body 
+        header.main-header
+            nav.main-header-nav
+                ul.main-header__item-list
+                   li.main-header_item
+                      a.active(href="/") Shop 
+                   li.main-header_item 
+                      a(href="/admin/add-product") Add Product
+        main
+            if prods.length > 0
+                .grid
+                    each products in prods
+                        article.card.product-item
+                            header.card_header
+                                h1.product_title #{products.title}
+                            div.card_image
+                                img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0dXaALSiuxh99VLY153DMp7JZlrogSuwxaUT7Sf8JKw&s",alt="A book")
+                                h1.product_price $177
+                                p.product_description A very interesting books is this and i read it all... it was very meaningfull.
+                            .card_actions
+                                button.btn Add to cart   
+            else 
+                h1 No products                   
