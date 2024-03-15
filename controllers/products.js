@@ -6,16 +6,34 @@ exports.getAddProduct = (req, res, next) => {
 }
 
 exports.postAddProduct = (req, res, next) => {
-    const product = new Product(req.body.title);
+    const title = req.body.title;
+    const imageUrl = req.body.imageUrl;
+    const price = req.body.price;
+    const description = req.body.description;
+    const product = new Product(title, imageUrl, price, description);
     console.log(product, "product//////===>");
-    product.save();
-    res.redirect('/');
-}
-exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    console.log(products, "product===>");
-    res.render('shop', { prods: products, pageTitle: 'Shop', hasproducts: products.length > 0 });
-    });
-   
+    product
+        .save()
+        .then(result => {
 
+            console.log('............../created products')
+            res.redirect('/admin/products');
+        })
+        .catch(err =>
+            console.log(err));
+};
+
+
+exports.getProducts = (req, res, next) => {
+    console.log("Fetching products...");
+    Product.fetchAll()
+        .then(products => {
+
+            res.render('shop', {
+                prods: products,
+                pageTitle: 'Shop',
+                path: '/'
+            });
+        })
+        .catch(err => console.log("Error fetching products:", err));
 }

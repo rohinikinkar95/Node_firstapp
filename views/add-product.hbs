@@ -15,12 +15,13 @@
       } .main-header__item a:active, .main-header__item a.active { color:
       #6200ff !important; } .form-control { margin: 1rem 0; } .form-control
       label, .form-control input { display: block; width: 100%; } .form-control
-      input { border: 1px solid rgb(219, 196, 65); border-radius: 2px; font:
-      inherit; } button { font: inherit; border: 1px solid rgb(219, 196, 65);
-      background: rgb(219, 196, 65); color: #6200ff; border-radius: 3px; cursor:
-      pointer; padding: 4px 10px; } button:hover { background-color: #6200ff;
-      color: rgb(219, 196, 65); border: 2px solid #6200ff; } .product-form {
-      width: 27rem; max-width: 90%; margin: auto; }
+      input,.form-control textarea { border: 1px solid rgb(219, 196, 65);
+      border-radius: 2px; font: inherit; } button { font: inherit; border: 1px
+      solid rgb(219, 196, 65); background: rgb(219, 196, 65); color: #6200ff;
+      border-radius: 3px; cursor: pointer; padding: 4px 10px; } button:hover {
+      background-color: #6200ff; color: rgb(219, 196, 65); border: 2px solid
+      #6200ff; } .product-form { width: 27rem; max-width: 90%; margin: auto; }
+      .form-control textarea { display: block; width: 100%; }
     </style>
   </head>
 
@@ -44,7 +45,19 @@
           <label for="title">Title</label>
           <input type="text" name="title" id="title" />
         </div>
-        <br />
+
+        <div class="form-control">
+          <label for="imageUrl">Image Url</label>
+          <input type="text" name="imageUrl" id="imageUrl" />
+        </div>
+        <div class="form-control">
+          <label for="price">Price</label>
+          <input type="number" name="price" id="price" />
+        </div>
+        <div class="form-control">
+          <label for="description">Description</label>
+          <textarea name="description" id="description" rows="5"></textarea>
+        </div>
         <button type="submit">
           ADD PRODUCT
 

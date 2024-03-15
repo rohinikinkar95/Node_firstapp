@@ -2,6 +2,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('./util/database');
 
 const hbs = require('hbs')
 const app = express()
@@ -9,6 +10,8 @@ const app = express()
 
 
 const errorController = require('./controllers/error')
+
+const mongoConnect = require('./util/database').mongoConnect;
 
 app.set('view engine', 'hbs')
 // app.set('view engine', 'pug');
@@ -20,7 +23,15 @@ const shopRoutes = require('./routes/shop');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+app.use((req, res, next) => {
+    next();
+});
+
+
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
@@ -28,6 +39,12 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 
-app.listen(4000, () => {
-    console.log("server start on http://localhost:4000");
+
+
+
+mongoConnect(() => {
+    app.listen(4000);
 });
+
+
+
