@@ -35,5 +35,5 @@ exports.getProducts = (req, res, next) => {
                 path: '/'
             });
         })
-        .catch(err => console.log("Error fetching products:", err));
+        .catch(err => console.log("Error fetching products :", err));
 }
