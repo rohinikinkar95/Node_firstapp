@@ -10,7 +10,13 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new Product(title, imageUrl, price, description);
+
+    const product = new Product({
+        title: title,
+        imageUrl: imageUrl,
+        price: price,
+        description: description
+    });
     console.log(product, "product//////===>");
     product
         .save()
@@ -26,9 +32,9 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
     console.log("Fetching products...");
-    Product.fetchAll()
+    Product.find()
         .then(products => {
-
+            console.log(products);
             res.render('shop', {
                 prods: products,
                 pageTitle: 'Shop',

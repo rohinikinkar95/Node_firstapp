@@ -3,18 +3,18 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./util/database');
+const mongoose = require('mongoose');
 
 const hbs = require('hbs')
-const app = express()
-// app.engine();
+const app = express();
+
 
 
 const errorController = require('./controllers/error')
 
-const mongoConnect = require('./util/database').mongoConnect;
 
 app.set('view engine', 'hbs')
-// app.set('view engine', 'pug');
+
 app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
@@ -39,12 +39,10 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 
-
-
-
-mongoConnect(() => {
-    app.listen(4000);
-});
-
-
-
+mongoose
+    .connect('mongodb+srv://rokglobaliasoft:D1Ii2FvtnjoKD05M@cluster0.8mtjjdp.mongodb.net/Datadb')
+    .then(result => app.listen(3000))
+    .catch(
+        err => {
+            console.log(err);
+        })
